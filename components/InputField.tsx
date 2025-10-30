@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet ,TextInputProps} from "react-native";
 
-interface InputProps {
+interface InputProps extends TextInputProps {
   label: string;
   value: string;
   onChangeText: (text: string) => void;
