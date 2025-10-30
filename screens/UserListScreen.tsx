@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, Alert, StyleSheet } from "react-native";
+import { View, Text, FlatList, Alert, StyleSheet, TouchableOpacity } from "react-native";
 import UserCard from "../components/UserCard";
 import { getDatabase, ref, get, child, update } from "firebase/database";
 import { getApp } from "firebase/app";
 import { User } from "../types/user.t";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useIsFocused } from "@react-navigation/native";
+
 
 export default function UserListScreen({ navigation }: any) {
   const [users, setUsers] = useState<User[]>([]);
@@ -65,7 +67,19 @@ export default function UserListScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Danh sách người dùng</Text>
+          
+      <View style={styles.headerRow}>
+        {/* Tiêu đề bên trái */}
+        <Text style={styles.title}>Danh sách người dùng</Text>
+
+        {/* Nút cộng bên phải */}
+        <TouchableOpacity 
+          style={styles.addButton}
+          onPress={() => navigation.navigate('AddUser')} 
+        >
+          <FontAwesome name="user-plus" size={32} color= "black" /> 
+        </TouchableOpacity>
+      </View>
 
       {users.length === 0 ? (
         <Text>Không có người dùng nào</Text>
@@ -88,5 +102,14 @@ export default function UserListScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: "#f5f5f5" },
-  title: { fontSize: 24, fontWeight: "bold", textAlign: "center", marginBottom: 20 },
+  title: { fontSize: 24, fontWeight: "bold", flex: 1 , textAlign: "center"},
+  headerRow: {
+    flexDirection: 'row',       // Xếp con theo chiều ngang
+    justifyContent: 'space-between', // Đẩy 2 con về 2 phía
+    alignItems: 'center',      // Căn giữa theo chiều dọc
+    marginBottom: 20,          // Giữ khoảng cách cũ của title
+  },
+  addButton: {
+    padding: 5, 
+  }
 });

@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../screens/LoginScreen";
 // import RegisterScreen from "../screens/RegisterScreen";
 import UserListScreen from "../screens/UserListScreen";
-// import AddUserScreen from "../screens/AddUserScreen";
+import AddUserScreen from "../screens/AddUserScreen";
 import EditUserScreen from "../screens/EditUserScreen";
 
 const Stack = createNativeStackNavigator();
@@ -36,11 +36,11 @@ export default function AppNavigator() {
           component={UserListScreen}
           options={{ title: "Danh sách người dùng" }}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="AddUser"
           component={AddUserScreen}
           options={{ title: "Thêm người dùng" }}
-        /> */}
+        />
         <Stack.Screen
           name="EditUser"
           component={EditUserScreen}
